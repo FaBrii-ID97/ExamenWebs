@@ -1,38 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import AddOffer from './componentes/addOffer';
-import OfferList from './componentes/offerList';
+import ListaCursos from './componentes/ListaCursos';
  import { BrowserRouter, Route, Routes } from "react-router-dom";
-import FormOfertas from './componentes/Form'; 
+import FormCurso from './componentes/CrearCurso';
+import Curso from './componentes/Curso';
 
-
-function App() {
-  const [ofertas, setOfertas] = React.useState([
-    { puesto: 'Desarrollador Frontend', salario: 50000 },
-    { puesto: 'Desarrollador Backend', salario: 60000 },
-    { puesto: 'Diseñador UX/UI', salario: 55000 },
-    { puesto: 'Administrador de Sistemas', salario: 70000 },
-    { puesto: 'Gerente de Proyectos', salario: 80000 }
+function App(){
+  const [cursos, setCursos] = useState([
+{ id: 1, nombre: "Introducción a React", nivel: "Básico", duracion: 20 }, 
+{ id: 2, nombre: "Algoritmos Avanzados", nivel: "Avanzado", duracion: 60 }
   ]);
 
-   const anadir = (nuevo) => {
-    
-      setOfertas([...ofertas, nuevo]);
-    
-    
-  console.log(ofertas);
-  };
-  return (
+const EliminarCurso = (id) => {
+  setCursos(cursos.filter(curso => curso.id !== id));
+}
+
+return (
     <BrowserRouter>
       <Routes>
-       <Route path="/" element={<OfferList  offers={ofertas} />} />
-    <Route path="/api/offer/new" element={<AddOffer setOfertas={setOfertas} />} />
-    <Route path="/form" element={<FormOfertas ofertas={ofertas} setOfertas={anadir} />} />
+        <Route path="/" element={<ListaCursos offers={cursos} />} />
+        <Route path="/CrearCurso" element={<FormCurso cursos={cursos} setCursos={setCursos} />} />
       </Routes>
     </BrowserRouter>
   );
 }
-
 export default App;
