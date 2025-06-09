@@ -18,7 +18,7 @@ const EliminarCurso = (id) => {
 return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<ListaCursos offers={cursos} />} />
+        <Route path="/" element={<ListaCursos offers={cursos} EliminarCurso={EliminarCurso} />} />
         <Route path="/CrearCurso" element={<FormCurso cursos={cursos} setCursos={setCursos} />} />
       </Routes>
     </BrowserRouter>
